@@ -1,8 +1,8 @@
-
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import styles from './Reviews.module.scss';
 import { Stars } from '@/UI/Stars';
+
 
 interface Review {
   avatar: string;
@@ -46,16 +46,14 @@ export function Reviews(): JSX.Element {
 
   const nextReview = () =>
     setCurrentReview(
-      currentReview === reviews.length - 1 ? 0 : currentReview + 1 //-1 se tiver no ultimo review ?(volta) pro 0(primeiro) :(se n tiver avança em 1) currentrebiew +1
+      currentReview === reviews.length - 1 ? 0 : currentReview + 1  //-1 se tiver no ultimo review ?(volta) pro 0(primeiro) :(se n tiver avança em 1) currentrebiew +1
     );
   const previousReview = () =>
     setCurrentReview(
       currentReview === 0 ? reviews.length - 1 : currentReview - 1
     );
 
-//Para cada 5 seg dar um nextReview
-
-    useEffect(() => {
+  useEffect(() => {
     const interval = setInterval(nextReview, 5000);
     return () => clearInterval(interval);
   }, [currentReview]);
